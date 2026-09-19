@@ -10,6 +10,9 @@ import {
   Trash2,
 } from "lucide-react";
 
+import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/hooks/useTheme";
+
 import CategoryButton from "@/components/picker/CategoryButton";
 import ItemEditor from "@/components/picker/ItemEditor";
 import ResultModal from "@/components/picker/ResultModal";
@@ -25,6 +28,8 @@ import {
 import { loadWheelData, saveWheelData } from "@/lib/storage";
 
 export default function App() {
+  const { theme, cycleTheme } = useTheme();
+
   const [initialData] = useState(() => loadWheelData());
 
   const [wheels, setWheels] = useState(initialData.wheels);
@@ -195,13 +200,15 @@ export default function App() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F8F7FC] text-slate-900">
+    <main className="min-h-screen overflow-hidden bg-[#F8F7FC] text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-violet-200/40 blur-3xl" />
-        <div className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-pink-200/35 blur-3xl" />
+        {/* background decoration */}
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-violet-200/40 blur-3xl dark:bg-violet-900/20" />
+        <div className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-pink-200/35 blur-3xl dark:bg-fuchsia-900/20" />
       </div>
 
-      <header className="relative z-30 border-b border-white/70 bg-white/70 backdrop-blur-xl">
+      {/* header */}
+      <header className="relative z-30 border-b border-white/70 bg-white/70 backdrop-blur-xl transition-colors dark:border-slate-800 dark:bg-slate-950/75">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 to-pink-500 text-white shadow-lg shadow-violet-200">
@@ -209,25 +216,31 @@ export default function App() {
             </span>
 
             <div>
-              <p className="text-base font-black leading-tight tracking-tight">
+              {/* logo tile */}
+              <p className="text-base font-black leading-tight tracking-tight text-slate-950 dark:text-white">
                 Pick & Spin
               </p>
 
-              <p className="text-[11px] font-medium text-slate-500">
+              {/* subtitle */}
+              <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                 Let chance decide
               </p>
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            onClick={() => setShareOpen(true)}
-            className="rounded-xl border-slate-200 bg-white/90 shadow-sm"
-          >
-            <Share2 size={17} className="mr-0 sm:mr-2" />
+          <div className="flex items-center gap-2">
+            <ThemeToggle theme={theme} onToggle={cycleTheme} />
 
-            <span className="hidden sm:inline">Share</span>
-          </Button>
+            <Button
+              variant="outline"
+              onClick={() => setShareOpen(true)}
+              className="rounded-xl border-slate-200 bg-white/90 text-slate-700 shadow-sm hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:bg-slate-700"
+            >
+              <Share2 size={17} className="mr-0 sm:mr-2" />
+
+              <span className="hidden sm:inline">Share</span>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -238,7 +251,8 @@ export default function App() {
               Choose a category
             </p>
 
-            <h1 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">
+            {/* page heading */}
+            <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
               What are we deciding?
             </h1>
           </div>
@@ -256,7 +270,8 @@ export default function App() {
         </section>
 
         <section className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <Card className="overflow-hidden rounded-[28px] border-white bg-white/80 shadow-xl shadow-violet-100/50 backdrop-blur">
+          {/* wheel card */}
+          <Card className="overflow-hidden rounded-[28px] border-white bg-white/80 shadow-xl shadow-violet-100/50 backdrop-blur transition-colors dark:border-slate-800 dark:bg-slate-900/85 dark:text-slate-100 dark:shadow-black/20">
             <CardContent className="p-4 sm:p-7">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <div className="min-w-0 flex-1">
@@ -268,23 +283,26 @@ export default function App() {
                       })
                     }
                     maxLength={50}
-                    className="w-full truncate bg-transparent text-xl font-black text-slate-950 outline-none focus:text-violet-700 sm:text-2xl"
+                    // wheel title
+                    className="w-full truncate bg-transparent text-xl font-black text-slate-950 outline-none focus:text-violet-700 dark:text-white dark:focus:text-violet-400 sm:text-2xl"
                     aria-label="Wheel name"
                   />
 
-                  <p className="mt-1 text-sm text-slate-500">
+                  {/* description */}
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                     Tap the title to rename this wheel.
                   </p>
                 </div>
 
                 {activeCategory === "custom" && (
                   <div className="relative">
+                    {/* My Wheels button */}
                     <Button
                       variant="outline"
                       onClick={() =>
                         setWheelMenuOpen((currentValue) => !currentValue)
                       }
-                      className="rounded-xl"
+                      className="rounded-xl dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                     >
                       My wheels
                       <ChevronDown size={15} className="ml-2" />
@@ -305,7 +323,8 @@ export default function App() {
                             opacity: 0,
                             y: -6,
                           }}
-                          className="absolute right-0 top-12 z-30 w-64 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl"
+                          // menu container
+                          className="absolute right-0 top-12 z-30 w-64 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl dark:border-slate-700 dark:bg-slate-800"
                         >
                           <div className="max-h-44 overflow-y-auto">
                             {customWheels.map((wheel) => (
@@ -316,10 +335,11 @@ export default function App() {
                                   setSelectedId(wheel.id);
                                   setWheelMenuOpen(false);
                                 }}
-                                className={`flex w-full items-center rounded-xl px-3 py-2 text-left text-sm font-semibold hover:bg-violet-50 ${
+                                // each wheel button
+                                className={`flex w-full items-center rounded-xl px-3 py-2 text-left text-sm font-semibold hover:bg-violet-50 dark:hover:bg-slate-700 ${
                                   wheel.id === selectedWheel.id
-                                    ? "text-violet-700"
-                                    : "text-slate-700"
+                                    ? "text-violet-700 dark:text-violet-300"
+                                    : "text-slate-700 dark:text-slate-200"
                                 }`}
                               >
                                 <span className="truncate">{wheel.name}</span>
@@ -334,7 +354,8 @@ export default function App() {
                           <button
                             type="button"
                             onClick={createCustomWheel}
-                            className="mt-1 flex w-full items-center rounded-xl border-t border-slate-100 px-3 py-2.5 text-left text-sm font-bold text-violet-700 hover:bg-violet-50"
+                            // "New custom wheel" button
+                            className="mt-1 flex w-full items-center rounded-xl border-t border-slate-100 px-3 py-2.5 text-left text-sm font-bold text-violet-700 hover:bg-violet-50 dark:border-slate-700 dark:text-violet-300 dark:hover:bg-slate-700"
                           >
                             <Plus size={16} className="mr-2" />
                             New custom wheel
@@ -377,7 +398,8 @@ export default function App() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-[28px] border-white bg-white/85 shadow-xl shadow-violet-100/50 backdrop-blur lg:sticky lg:top-5">
+          {/* options card */}
+          <Card className="rounded-[28px] border-white bg-white/85 shadow-xl shadow-violet-100/50 backdrop-blur transition-colors dark:border-slate-800 dark:bg-slate-900/85 dark:text-slate-100 dark:shadow-black/20 lg:sticky lg:top-5">
             <CardContent className="p-5">
               <ItemEditor
                 items={selectedWheel.items}
