@@ -49,9 +49,11 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
   return (
     <div className={disabled ? "pointer-events-none opacity-60" : ""}>
       <div className="mb-3">
-        <h3 className="font-bold text-slate-900">Wheel options</h3>
+        <h3 className="font-bold text-slate-900 dark:text-slate-100">
+          Wheel options
+        </h3>
 
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           {items.length} item
           {items.length === 1 ? "" : "s"} · minimum 2 to spin
         </p>
@@ -71,7 +73,8 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
               category === "food" ? "Add another cuisine…" : "Add an option…"
             }
             maxLength={40}
-            className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            // new item input
+            className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-violet-500 dark:focus:ring-violet-950"
           />
 
           <Button
@@ -96,7 +99,8 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
           return (
             <div
               key={`${item}-${index}`}
-              className="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2"
+              // option rows
+              className="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 transition-colors dark:border-slate-700 dark:bg-slate-800"
             >
               <span
                 className="h-3 w-3 shrink-0 rounded-full border border-black/10"
@@ -111,7 +115,8 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
                 onChange={(event) => updateItem(index, event.target.value)}
                 onBlur={cleanItems}
                 maxLength={40}
-                className="min-w-0 flex-1 bg-transparent text-sm font-medium text-slate-700 outline-none disabled:cursor-not-allowed"
+                // item input
+                className="min-w-0 flex-1 bg-transparent text-sm font-medium text-slate-700 outline-none disabled:cursor-not-allowed dark:text-slate-200"
                 aria-label={`Edit ${item}`}
               />
 
@@ -119,7 +124,8 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
                 <button
                   type="button"
                   onClick={() => removeItem(index)}
-                  className="rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-500"
+                  // remove item button
+                  className="rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-500 dark:text-slate-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
                   aria-label={`Remove ${item}`}
                 >
                   <Trash2 size={16} />
