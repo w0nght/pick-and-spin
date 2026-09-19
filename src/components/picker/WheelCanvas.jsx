@@ -43,12 +43,19 @@ export default function WheelCanvas({ items, category, rotation, spinning }) {
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[520px] select-none">
-      <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1 drop-shadow-lg">
-        <div className="h-0 w-0 border-l-[18px] border-r-[18px] border-t-[34px] border-l-transparent border-r-transparent border-t-slate-950" />
+      <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1 drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)]">
+        <div className="h-0 w-0 border-l-[18px] border-r-[18px] border-t-[34px] border-l-transparent border-r-transparent border-t-slate-950 dark:border-t-violet-300" />
       </div>
 
       <motion.div
-        className="h-full w-full rounded-full p-3 shadow-[0_24px_70px_rgba(76,29,149,0.22)]"
+        className="
+          h-full w-full rounded-full bg-white p-3
+          ring-1 ring-slate-200
+          shadow-[0_24px_70px_rgba(76,29,149,0.22)]
+          transition-[background-color,box-shadow]
+          dark:bg-slate-700
+          dark:ring-4 dark:ring-violet-400/70
+          dark:shadow-[0_0_35px_rgba(139,92,246,0.55),0_24px_80px_rgba(0,0,0,0.7)]"
         animate={{ rotate: rotation }}
         transition={
           spinning
@@ -66,7 +73,12 @@ export default function WheelCanvas({ items, category, rotation, spinning }) {
           className="h-full w-full overflow-visible rounded-full"
           aria-label="Random picker wheel"
         >
-          <circle cx={center} cy={center} r={radius + 10} fill="#111827" />
+          <circle
+            cx={center}
+            cy={center}
+            r={radius + 10}
+            className="fill-slate-900 dark:fill-slate-600"
+          />
 
           {safeItems.map((item, index) => {
             const startAngle = index * segmentAngle;
@@ -124,8 +136,7 @@ export default function WheelCanvas({ items, category, rotation, spinning }) {
             cx={center}
             cy={center}
             r="42"
-            fill="white"
-            stroke="#111827"
+            className="fill-white stroke-slate-900 dark:fill-slate-100 dark:stroke-violet-300"
             strokeWidth="8"
           />
 
