@@ -442,7 +442,7 @@ export default function App() {
         </section>
       </div>
 
-      <footer className="relative mx-auto max-w-7xl px-4 py-8 text-center text-xs text-slate-400">
+      <footer className="relative mx-auto max-w-7xl px-4 py-8 text-center text-xs text-slate-400 dark:text-slate-500">
         Made for delightfully difficult decisions.
       </footer>
 
