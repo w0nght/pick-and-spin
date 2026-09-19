@@ -33,13 +33,15 @@ export default function ResultModal({ result, onClose, onSpinAgain }) {
               damping: 18,
               stiffness: 240,
             }}
-            className="relative w-full max-w-sm overflow-hidden rounded-3xl bg-white p-7 text-center shadow-2xl"
+            // result card
+            className="relative w-full max-w-sm overflow-hidden rounded-3xl bg-white p-7 text-center text-slate-900 shadow-2xl dark:bg-slate-900 dark:text-slate-100"
           >
             <div className="absolute -left-8 -top-8 h-28 w-28 rounded-full bg-pink-200/60 blur-2xl" />
             <div className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-violet-200/70 blur-2xl" />
 
             <div className="relative">
-              <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-violet-100 text-violet-600">
+              {/* icon container */}
+              <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-violet-100 text-violet-600 dark:bg-violet-950 dark:text-violet-300">
                 <Sparkles size={27} />
               </span>
 
@@ -47,11 +49,12 @@ export default function ResultModal({ result, onClose, onSpinAgain }) {
                 The wheel chose
               </p>
 
-              <h2 className="my-3 break-words text-3xl font-black text-slate-950">
+              {/* result text */}
+              <h2 className="my-3 break-words text-3xl font-black text-slate-950 dark:text-white">
                 {result}
               </h2>
 
-              <p className="mb-6 text-sm text-slate-500">
+              <p className="mb-6 text-sm text-slate-500 dark:text-slate-400">
                 Decision made. Unless you want one more spin.
               </p>
 
@@ -59,7 +62,7 @@ export default function ResultModal({ result, onClose, onSpinAgain }) {
                 <Button
                   variant="outline"
                   onClick={onClose}
-                  className="rounded-xl py-5"
+                  className="rounded-xl py-5 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                 >
                   Done
                 </Button>
