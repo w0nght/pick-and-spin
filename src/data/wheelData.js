@@ -1,6 +1,7 @@
 import { Edit3, Palette, RotateCw, Utensils } from "lucide-react";
 export const STORAGE_KEY = "joey-random-picker-wheel-v1";
 
+// fallback palette for food and custom wheels
 export const WHEEL_COLORS = [
   "#7C3AED",
   "#EC4899",
@@ -28,8 +29,16 @@ export const STARTER_COLORS = [
   "Orange",
   "Yellow",
   "Green",
+  "Light Green",
   "Blue",
+  "Light Blue",
   "Purple",
+  "Pink",
+  "Brown",
+  "Grey",
+  "Light Grey",
+  "Black",
+  "White",
 ];
 
 export const DEFAULT_WHEELS = [
