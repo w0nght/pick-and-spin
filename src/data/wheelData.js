@@ -38,7 +38,6 @@ export const QUICK_FOOD_OPTIONS = [
   "Noodles",
   "Sandwich",
   "Sushi",
-  "Bubble Tea",
   "Pasta",
   "Salad",
   "Poke Bowl",
@@ -55,8 +54,7 @@ export const SNACK_TREAT_OPTIONS = [
   "Chocolate",
   "Popcorn",
   "Chips",
-  "Yogurt",
-  "Muffin",
+  "Lollies",
   "Brownie",
 ];
 
