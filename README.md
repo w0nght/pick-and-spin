@@ -7,22 +7,28 @@ Users can choose a built-in category or create their own custom wheels. Wheel se
 ## Features
 
 - Animated random picker wheel
-- Food picker based on cuisines
-- Color picker
+- Cuisines picker
+- Quick food and drink picker
+- Snacks and treats picker
+- Color picker with automatic color-name matching
 - Heads-or-tails picker
 - Custom wheel names and options
 - Add, edit, and remove wheel options
 - Create multiple custom wheels
-- Color wheel segments automatically match common color names, including light and dark color variations
 - Automatic saving with localStorage
-- QR-code sharing
-- Copy and share the website link
+- Light, dark and system themes
+- QR-code and direct link sharing
 - Responsive mobile and desktop design
-- Light and dark themes with automatic preference saving
 
 ## How to Use
 
 1. Select a category.
+   - Cuisines
+   - Quick Food
+   - Treats
+   - Colors
+   - Heads or tails
+   - Custom
 2. Add, edit, or remove wheel options.
 3. Rename the wheel if needed.
 4. Select **Spin the wheel**.
@@ -55,7 +61,6 @@ The shared link opens the website but does not include the user's locally saved 
 
 ## Change the theme
 
- 
 Use the theme button in the header to switch between:
 
 - System
