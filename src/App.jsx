@@ -420,18 +420,18 @@ export default function App() {
                   </button>
                 )}
 
-              <div className="mt-5 rounded-2xl bg-emerald-50 p-4">
+              <div className="mt-5 rounded-2xl bg-emerald-50 p-4 dark:bg-emerald-950/35">
                 <div className="flex gap-3">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-emerald-100 text-emerald-700">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-emerald-100 text-emerald-700dark:bg-emerald-900 dark:text-emerald-300">
                     <Check size={17} />
                   </span>
 
                   <div>
-                    <p className="text-sm font-bold text-emerald-950">
+                    <p className="text-sm font-bold text-emerald-950 dark:text-emerald-200">
                       Saved automatically
                     </p>
 
-                    <p className="mt-0.5 text-xs leading-relaxed text-emerald-700">
+                    <p className="mt-0.5 text-xs leading-relaxed text-emerald-700 dark:text-emerald-400">
                       Your wheels stay on this device using local storage.
                     </p>
                   </div>
