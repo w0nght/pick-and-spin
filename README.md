@@ -53,6 +53,17 @@ Select the **Share** button to:
 
 The shared link opens the website but does not include the user's locally saved wheels.
 
+## Change the theme
+
+ 
+Use the theme button in the header to switch between:
+
+- System
+- Light
+- Dark
+
+The selected theme is saved automatically in the browser.
+
 ## Tech Stack
 
 - React
