@@ -22,6 +22,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   CATEGORY_META,
+  QUICK_FOOD_OPTIONS,
+  SNACK_TREAT_OPTIONS,
   STARTER_COLORS,
   STARTER_CUISINES,
 } from "@/data/wheelData";
@@ -78,17 +80,21 @@ export default function App() {
 
   function getStartingItems(category) {
     if (category === "food") {
-      return STARTER_CUISINES;
+      return [...STARTER_CUISINES];
     }
 
+    if (category === "quickFood") {
+      return [...QUICK_FOOD_OPTIONS];
+    }
+    if (category === "treats") {
+      return [...SNACK_TREAT_OPTIONS];
+    }
     if (category === "colors") {
-      return STARTER_COLORS;
+      return [...STARTER_COLORS];
     }
-
     if (category === "coin") {
       return ["Heads", "Tails"];
     }
-
     return ["Option 1", "Option 2", "Option 3"];
   }
 
@@ -257,7 +263,7 @@ export default function App() {
             </h1>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-6">
             {Object.keys(CATEGORY_META).map((category) => (
               <CategoryButton
                 key={category}
