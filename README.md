@@ -18,6 +18,7 @@ Users can choose a built-in category or create their own custom wheels. Wheel se
 - QR-code sharing
 - Copy and share the website link
 - Responsive mobile and desktop design
+- Light and dark themes with automatic preference saving
 
 ## How to Use
 
