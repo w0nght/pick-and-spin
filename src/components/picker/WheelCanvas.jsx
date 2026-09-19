@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-
+import { getColorTextColor, getNamedColor } from "@/lib/colorUtils";
 import { WHEEL_COLORS } from "@/data/wheelData";
 
 function truncateText(text, maximumLength = 18) {
@@ -10,7 +10,7 @@ function truncateText(text, maximumLength = 18) {
   return `${text.slice(0, maximumLength - 1)}…`;
 }
 
-export default function WheelCanvas({ items, rotation, spinning }) {
+export default function WheelCanvas({ items, category, rotation, spinning }) {
   const size = 480;
   const center = size / 2;
   const radius = 218;
@@ -84,11 +84,21 @@ export default function WheelCanvas({ items, rotation, spinning }) {
             const fontSize =
               safeItems.length > 14 ? 11 : safeItems.length > 9 ? 13 : 16;
 
+            const fallbackColor = WHEEL_COLORS[index % WHEEL_COLORS.length];
+
+            const segmentColor =
+              category === "colors"
+                ? (getNamedColor(item) ?? fallbackColor)
+                : fallbackColor;
+
+            const textColor =
+              category === "colors" ? getColorTextColor(item) : "#FFFFFF";
+
             return (
               <g key={`${item}-${index}`}>
                 <path
                   d={describeArc(startAngle, endAngle)}
-                  fill={WHEEL_COLORS[index % WHEEL_COLORS.length]}
+                  fill={segmentColor}
                   stroke="rgba(255,255,255,.55)"
                   strokeWidth="2"
                 />
@@ -96,7 +106,7 @@ export default function WheelCanvas({ items, rotation, spinning }) {
                 <text
                   x={textX}
                   y={textY}
-                  fill="white"
+                  fill={textColor}
                   fontSize={fontSize}
                   fontWeight="700"
                   textAnchor="middle"
