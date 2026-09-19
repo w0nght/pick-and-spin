@@ -349,6 +349,8 @@ export default function App() {
               <div className="mx-auto max-w-[560px] py-2 sm:py-4">
                 <WheelCanvas
                   items={selectedWheel.items}
+                  // This prevents food and custom options from being interpreted as colors.
+                  category={selectedWheel.category}
                   rotation={rotation}
                   spinning={spinning}
                 />
