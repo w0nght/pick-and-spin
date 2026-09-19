@@ -3,6 +3,7 @@ import { Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { WHEEL_COLORS } from "@/data/wheelData";
+import { getNamedColor } from "@/lib/colorUtils";
 
 export default function ItemEditor({ items, category, onChange, disabled }) {
   const [newItem, setNewItem] = useState("");
@@ -84,40 +85,49 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
       )}
 
       <div className="max-h-[300px] space-y-2 overflow-y-auto pr-1">
-        {items.map((item, index) => (
-          <div
-            key={`${item}-${index}`}
-            className="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2"
-          >
-            <span
-              className="h-3 w-3 shrink-0 rounded-full"
-              style={{
-                background: WHEEL_COLORS[index % WHEEL_COLORS.length],
-              }}
-            />
+        {items.map((item, index) => {
+          const fallbackColor = WHEEL_COLORS[index % WHEEL_COLORS.length];
 
-            <input
-              value={item}
-              disabled={!canEdit}
-              onChange={(event) => updateItem(index, event.target.value)}
-              onBlur={cleanItems}
-              maxLength={40}
-              className="min-w-0 flex-1 bg-transparent text-sm font-medium text-slate-700 outline-none disabled:cursor-not-allowed"
-              aria-label={`Edit ${item}`}
-            />
+          const itemColor =
+            category === "colors"
+              ? (getNamedColor(item) ?? fallbackColor)
+              : fallbackColor;
 
-            {canEdit && (
-              <button
-                type="button"
-                onClick={() => removeItem(index)}
-                className="rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-500"
-                aria-label={`Remove ${item}`}
-              >
-                <Trash2 size={16} />
-              </button>
-            )}
-          </div>
-        ))}
+          return (
+            <div
+              key={`${item}-${index}`}
+              className="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2"
+            >
+              <span
+                className="h-3 w-3 shrink-0 rounded-full border border-black/10"
+                style={{
+                  backgroundColor: itemColor,
+                }}
+              />
+
+              <input
+                value={item}
+                disabled={!canEdit}
+                onChange={(event) => updateItem(index, event.target.value)}
+                onBlur={cleanItems}
+                maxLength={40}
+                className="min-w-0 flex-1 bg-transparent text-sm font-medium text-slate-700 outline-none disabled:cursor-not-allowed"
+                aria-label={`Edit ${item}`}
+              />
+
+              {canEdit && (
+                <button
+                  type="button"
+                  onClick={() => removeItem(index)}
+                  className="rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-500"
+                  aria-label={`Remove ${item}`}
+                >
+                  <Trash2 size={16} />
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
