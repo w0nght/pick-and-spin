@@ -13,6 +13,7 @@ Users can choose a built-in category or create their own custom wheels. Wheel se
 - Custom wheel names and options
 - Add, edit, and remove wheel options
 - Create multiple custom wheels
+- Color wheel segments automatically match common color names, including light and dark color variations
 - Automatic saving with localStorage
 - QR-code sharing
 - Copy and share the website link
