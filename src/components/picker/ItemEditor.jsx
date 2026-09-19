@@ -70,7 +70,13 @@ export default function ItemEditor({ items, category, onChange, disabled }) {
               }
             }}
             placeholder={
-              category === "food" ? "Add another cuisine…" : "Add an option…"
+              category === "food"
+                ? "Add another cuisine…"
+                : category === "quickFood"
+                  ? "Add another food or drink…"
+                  : category === "treats"
+                    ? "Add another snack or treat…"
+                    : "Add an option…"
             }
             maxLength={40}
             // new item input
